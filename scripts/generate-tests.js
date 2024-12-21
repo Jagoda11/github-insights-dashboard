@@ -17,6 +17,11 @@ const generateTestForFile = (filePath) => {
   const fileContent = fs.readFileSync(filePath, 'utf-8')
   let testTemplate
 
+  const isDefaultExport = fileContent.includes('export default')
+  const importStatement = isDefaultExport
+    ? `import ${fileName} from './${fileName}'`
+    : `import { ${fileName} } from './${fileName}'`
+
   if (
     fileContent.includes('React.Component') ||
     fileContent.includes('function')
@@ -26,9 +31,9 @@ const generateTestForFile = (filePath) => {
     const hasButton =
       fileContent.includes('<button') || fileContent.includes('onClick')
 
-    testTemplate = `import React from 'react
+    testTemplate = `${importStatement}
+import React from 'react'
 import { render, screen${hasButton ? ', fireEvent' : ''} } from '@testing-library/react'
-import ${fileName} from './${fileName}'
 
 describe('${fileName} Component', () => {
   it('🚀 should render without crashing', () => {
@@ -46,7 +51,7 @@ describe('${fileName} Component', () => {
     render(<${fileName} title={testProp} />)
     expect(screen.getByText(testProp)).toBeInTheDocument()
   })
-  
+
   ${
     hasButton
       ? `it('🎯 should handle button click events', () => {
@@ -68,7 +73,7 @@ describe('${fileName} Component', () => {
   } else {
     // Generic Test Template
     console.log(`📂 Generating generic test for: ${fileName}`)
-    testTemplate = `import { ${fileName} } from './${fileName}'
+    testTemplate = `${importStatement}
 
 describe('${fileName}', () => {
   it('✅ should be defined', () => {
