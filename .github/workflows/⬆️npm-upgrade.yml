@@ -2,8 +2,8 @@ name: 🚀 Dependency Update and Vulnerability Scan
 
 on:
   schedule:
-    - cron: '0 2 * * 0'  # Runs weekly on Sunday at 2 a.m. UTC
-  workflow_dispatch:      # Allows manual triggering
+    - cron: '0 2 * * 0' # Runs weekly on Sunday at 2 a.m. UTC
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   update-and-scan:
@@ -38,18 +38,6 @@ jobs:
       - name: 🧪 Test with coverage
         run: npm run test
 
-      - name: 🎭 Mask Debricked credentials
-        run: echo "::add-mask::${{ secrets.DEBRICKED_TOKEN }}"
-
-      - name: Install Debricked CLI
-        run: |
-          curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
-          sudo mv debricked /usr/local/bin/debricked
-
-      - name: 🛡️ Debricked Vulnerability Scan
-        run: |
-          debricked scan -t ${{ secrets.DEBRICKED_TOKEN }} -r ${{ github.repository }} -c ${{ github.sha }}
-
       - name: 📝 Commit changes
         if: success()
         run: |
@@ -62,3 +50,6 @@ jobs:
         if: success()
         run: git push
 
+      - name: 🚨 Notify failure
+        if: failure()
+        run: echo "Build or tests failed. Please investigate."

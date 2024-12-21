@@ -1,33 +1,34 @@
 {
-	"name": "react-template",
-	"version": "1.0.1",
-	"description": "React template with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS",
+	"name": "github-insights-dashboard",
+	"version": "1.0.0",
+	"description": "React app: dashboard for checking commit history with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS",
 	"scripts": {
 		"start": "echo '🚀 Starting the app... Please wait.' && npm run build && echo '✅ Build complete. Launching the app...' && node dist/index.js",
 		"build": "echo '🔨 Building the app...' && tsc",
 		"test": "echo '🧪 Running tests...' && jest --config jest.config.cjs --coverage",
 		"format": "echo '🖋️ Formatting code... Please wait.' && prettier --write . && echo '✅ Your code is formatted!'",
 		"lint": "echo '🧹 Linting code... Please wait.' && eslint -c eslint.config.js . && echo '✅ Linting complete. Your code is clean!'",
+    "lint-fix": "echo '🔧 Linting and fixing issues...' && eslint --fix . && prettier --write .",
 		"precommit": "echo '🔒 Precommit: Linting and testing code...' && npm run lint && npm test",
 		"pretest": "echo '🔎 Pretest: Linting code...' && npm run lint",
 		"watch": "echo '👀 Watching files...' && jest --watch",
 		"debug": "echo '🐞 Starting the app in debug mode...' && NODE_ENV=development nodemon --inspect src/index.js",
 		"clean": "echo '🧽 Cleaning up...' && rm -rf ./node_modules ./dist && rm package-lock.json",
 		"prepare": "husky install # 🐶 Setting up Husky",
-    "docker-clean": "echo '🧹 Cleaning up Docker resources...' && docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker image prune -af && docker volume prune -f && docker network prune -f && docker builder prune -f"
-
+    "docker-clean": "echo '🧹 Cleaning up Docker resources...' && docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker image prune -af && docker volume prune -f && docker network prune -f && docker builder prune -f",
+    "generate-tests": "echo '🛠️ Generating missing test files... 📂' && node scripts/generate-tests.js && echo '✅ Test generation complete! 🎉'"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Jagoda11/react-template"
+		"url": "git+https://github.com/Jagoda11/github-insights-dashboard.git"
 	},
 	"keywords": [],
 	"author": "Jagoda11",
-	"license": "Proprietary",
+	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/Jagoda11/react-template/issues"
+		"url": "https://github.com/Jagoda11/github-insights-dashboard/issues"
 	},
-	"homepage": "https://github.com/Jagoda11/react-template#readme",
+	"homepage": "https://github.com/Jagoda11/github-insights-dashboard/#readme",
 	"devDependencies": {
 		"@babel/core": "^7.26.0",
 		"@babel/preset-env": "^7.26.0",
@@ -36,17 +37,17 @@
 		"@testing-library/react": "^16.1.0",
 		"@types/jest": "^29.5.14",
 		"@types/node": "^22.10.2",
-		"@types/react": "^19.0.1",
+		"@types/react": "^19.0.2",
 		"@types/react-dom": "^19.0.2",
 		"@types/react-redux": "^7.1.34",
 		"@types/react-router-dom": "^5.3.3",
-		"@typescript-eslint/eslint-plugin": "^8.18.0",
-		"@typescript-eslint/parser": "^8.18.0",
+		"@typescript-eslint/eslint-plugin": "^8.18.1",
+		"@typescript-eslint/parser": "^8.18.1",
 		"babel-loader": "^9.2.1",
 		"eslint": "^9.17.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.31.0",
-		"eslint-plugin-jest": "^28.9.0",
+		"eslint-plugin-jest": "^28.10.0",
 		"eslint-plugin-prettier": "^5.2.1",
 		"eslint-plugin-react": "^7.37.2",
 		"eslint-plugin-react-hooks": "^5.1.0",
@@ -57,6 +58,7 @@
 		"prettier": "^3.4.2",
 		"readline-sync": "^1.4.10",
 		"ts-jest": "^29.2.5",
+    "ts-morph": "^24.0.0",
 		"typescript": "^5.7.2"
 	},
 	"dependencies": {
@@ -67,8 +69,8 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-redux": "^9.2.0",
-		"react-router-dom": "^7.0.2",
+		"react-router-dom": "^7.1.0",
 		"redux": "^5.0.1",
-		"tailwindcss": "^3.4.16"
+		"tailwindcss": "^3.4.17"
 	}
 }

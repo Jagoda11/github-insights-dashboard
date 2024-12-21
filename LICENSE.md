@@ -1,20 +1,21 @@
-# Commercial License Agreement
+# MIT License
 
 Copyright (c) 2024 Jagoda11
 
-This license allows the licensee to use the software for commercial purposes only under the terms specified below.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Terms
+📜 The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-1. **Grant of License:** The licensor grants the licensee a non-exclusive, non-transferable right to use the software.
-2. **Payment:** The licensee agrees to pay the licensor a fee of [specified amount] for the use of the software.
-3. **Restrictions:** The licensee may not distribute, sublicense, or sell the software without the licensor’s prior written consent.
-4. **Termination:** The licensor may terminate this license if the licensee breaches any of the terms and conditions. Upon termination, the licensee must cease all use of the software.
-
-For more details, contact Jagoda11.
-
----
-
-For any use of this software, a commercial license must be obtained from the author. Please contact:
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Jagoda11) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jagoda-cubrilo-web-developer/)
-for licensing terms and conditions. 🚫
+⚠️ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

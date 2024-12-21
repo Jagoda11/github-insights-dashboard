@@ -1,16 +1,16 @@
-# 🚀 React TypeScript Template
+# 🚀 GitHub Insights Dashboard
 
-![License: Commercial](https://img.shields.io/badge/license-Commercial-pink)
-![Open Issues](https://img.shields.io/github/issues/Jagoda11/react-template?style=flat-square&color=orange)
-![Last Commit](https://img.shields.io/github/last-commit/Jagoda11/react-template/main?style=flat-square&color=yellow)
-![Build Status](https://github.com/Jagoda11/react-template/actions/workflows/🚀ci.yml/badge.svg?branch=main)
-![React](https://img.shields.io/github/package-json/dependency-version/Jagoda11/react-template/react?label=React)
-![TypeScript](https://img.shields.io/github/package-json/dependency-version/Jagoda11/react-template/dev/typescript?label=TypeScript)
-![Build Status](https://github.com/Jagoda11/react-template/actions/workflows/⬆️npm-upgrade.yml/badge.svg?branch=main)
+![License: MIT](https://img.shields.io/badge/license-MIT-pink)
+![Open Issues](https://img.shields.io/github/issues/Jagoda11/github-insights-dashboard?style=flat-square&color=orange)
+![Last Commit](https://img.shields.io/github/last-commit/Jagoda11/github-insights-dashboard/main?style=flat-square&color=yellow)
+![Build Status](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/🚀ci.yml/badge.svg?branch=main)
+![React](https://img.shields.io/github/package-json/dependency-version/Jagoda11/github-insights-dashboard/react?label=React)
+![TypeScript](https://img.shields.io/github/package-json/dependency-version/Jagoda11/github-insights-dashboard/dev/typescript?label=TypeScript)
+![Build Status](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/⬆️npm-upgrade.yml/badge.svg?branch=main)
 
 ## 📝 Summary
 
-This React TypeScript template is designed for a quick start in new projects. It comes pre-configured with essential tools and libraries to streamline the development process. The template includes:
+An interactive dashboard to visualize GitHub user activity, including commits, programming languages, and repository statistics.
 
 - React ⚛️ for building user interfaces.
 - Babel 🐵
@@ -61,8 +61,7 @@ This template includes several GitHub Actions workflows that automate various ta
 - `thank-contributors-on-issue-close.yml`: Thanks contributors when an issue they commented on is closed.
 - `welcome-new-pull-requests.yml`: Posts a welcome message on new pull requests.
 - `welcome.yml`: Posts a welcome message on new issues.
-- `npm-upgrade.yml`: checks for new versions of the dependencies and updates package.json and package-lock.json, scans with
-  [Debricked](https://debricked.com/) for vulnerabilities before it pushes the changes.
+- `npm-upgrade.yml`: checks for new versions of the dependencies and updates package.json and package-lock.json
 
 These workflows use the `secrets.GITHUB_TOKEN` secret, which GitHub automatically creates for every repository. You can create a personal access token and add it as a secret in your repository. For more information, see [Creating and storing encrypted secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
@@ -80,10 +79,6 @@ To use GitHub Codespaces:
 
 Your development environment is now set up and running in a Docker container in the cloud. All commands you run in the Codespaces terminal will be executed inside the container. Any changes you make to the project will be reflected in the container and vice versa.
 
-## 💖 Support
-
-If you like this hassle-free and easy setup, and if it saved you some time, please consider obtaining a commercial license and sponsoring me on [GitHub Sponsors](https://github.com/sponsors/Jagoda11). Your support is greatly appreciated and helps me continue my contributions to open source and volunteer work.
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md).
@@ -95,12 +90,5 @@ Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community appr
 
 ## 📝 License
 
-This project is licensed under the terms of the Commercial License Agreement. For more details, see the [LICENSE](LICENSE.md) file.
+This project is licensed under the terms of the MIT License Agreement. For more details, see the [LICENSE](LICENSE.md) file.
 © 2024 Jagoda11
-
-## 📖 Related Articles
-
-For more insights and detailed guides, check out these related articles:
-
-- [The Power of Project Templates: Boosting Efficiency in Development](https://medium.com/code-like-a-girl/the-power-of-project-templates-boosting-efficiency-in-development-1a61cb6bcdae)
-- [How to Set Up a Template Repository on GitHub](https://medium.com/new-writers-welcome/how-to-set-up-a-template-repository-on-github-0e7446a46817)
