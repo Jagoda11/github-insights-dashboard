@@ -5,7 +5,7 @@ describe('👋 greet function', () => {
     const name = 'User'
     greet(name)
     expect(consoleSpy).toHaveBeenCalledWith(
-      `Hello, ${name}! 👋 Welcome to my project template.`,
+      `Hello, ${name}! 👋 Welcome to my project.`,
     )
     consoleSpy.mockRestore()
   })
