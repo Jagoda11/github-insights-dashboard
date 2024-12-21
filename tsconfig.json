@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "commonjs",
+    "module": "ESNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -17,7 +17,9 @@
     "allowJs": true,
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "jsx": "react",
+    "moduleResolution": "node"
   },
   "include": ["src/**/*"]
 }

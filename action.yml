@@ -1,5 +1,5 @@
-name: '🚀 React Template CI/CD'
-description: 'CI/CD pipeline for React template with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS'
+name: '🚀 Github Insights Dashboard CI/CD'
+description: 'CI/CD pipeline with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS'
 author: 'Jagoda11'
 inputs:
   node-version:

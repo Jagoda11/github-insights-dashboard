@@ -58,6 +58,8 @@ export default [
       'public/',
       '*.md',
       '.vscode/',
+      'tsconfig.json',
+      'tsconfig.react.json',
     ],
   },
 ]
