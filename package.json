@@ -1,6 +1,6 @@
 {
   "name": "github-insights-dashboard",
-  "homepage": "https://jagoda11.github.io/github-insights-dashboard",
+  "homepage": "https://github.com/Jagoda11/github-insights-dashboard/#readme",
   "version": "1.0.0",
   "type": "module",
   "description": "React app: dashboard for checking commit history with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS",
@@ -30,7 +30,6 @@
   "bugs": {
     "url": "https://github.com/Jagoda11/github-insights-dashboard/issues"
   },
-  "homepage": "https://github.com/Jagoda11/github-insights-dashboard/#readme",
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
@@ -62,7 +61,8 @@
     "readline-sync": "^1.4.10",
     "ts-jest": "^29.2.5",
     "ts-morph": "^24.0.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "whatwg-fetch": "^3.6.20"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",
