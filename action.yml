@@ -1,0 +1,25 @@
+name: '🚀 React Template CI/CD'
+description: 'CI/CD pipeline for React template with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS'
+author: 'Jagoda11'
+inputs:
+  node-version:
+    description: '🌐 Node.js version to use'
+    required: true
+    default: '21'
+  install-dependencies:
+    description: '📦 Whether to install dependencies'
+    required: false
+    default: 'true'
+  run-tests:
+    description: '🧪 Whether to run tests'
+    required: false
+    default: 'true'
+outputs:
+  success-message:
+    description: '🎉 Message displayed upon successful execution'
+runs:
+  using: 'node21'
+  main: 'dist/index.js'
+branding:
+  icon: 'react'
+  color: 'blue'
