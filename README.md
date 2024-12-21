@@ -52,7 +52,7 @@ To run these scripts, use `npm run <script-name>`:
 
 ## 🤖 GitHub Actions Workflows
 
-This template includes several GitHub Actions workflows that automate various tasks:
+This repo includes several GitHub Actions workflows that automate various tasks:
 
 - `ci.yml`: Runs your project's continuous integration (CI) tasks.
 - `close-merged-pull-requests.yml`: Automatically closes pull requests that have been merged.
