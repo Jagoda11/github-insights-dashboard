@@ -1,6 +1,7 @@
 {
 	"name": "github-insights-dashboard",
 	"version": "1.0.0",
+  "type": "module",
 	"description": "React app: dashboard for checking commit history with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS",
 	"scripts": {
 		"start": "echo '🚀 Starting the app... Please wait.' && npm run build && echo '✅ Build complete. Launching the app...' && node dist/index.js",

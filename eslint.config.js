@@ -1,11 +1,11 @@
-const parser = require('@typescript-eslint/parser')
-const typescriptEslintPlugin = require('@typescript-eslint/eslint-plugin')
-const jestPlugin = require('eslint-plugin-jest')
-const prettierPlugin = require('eslint-plugin-prettier')
-const reactHooksPlugin = require('eslint-plugin-react-hooks')
-const reactPlugin = require('eslint-plugin-react')
+import parser from '@typescript-eslint/parser'
+import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
+import jestPlugin from 'eslint-plugin-jest'
+import prettierPlugin from 'eslint-plugin-prettier'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import reactPlugin from 'eslint-plugin-react'
 
-module.exports = [
+export default [
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {

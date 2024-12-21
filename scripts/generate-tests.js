@@ -23,8 +23,11 @@ const generateTestForFile = (filePath) => {
   ) {
     // Component Test Template
     console.log(`✨ Generating tests for component: ${fileName}`)
+    const hasButton =
+      fileContent.includes('<button') || fileContent.includes('onClick')
+
     testTemplate = `import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen${hasButton ? ', fireEvent' : ''} } from '@testing-library/react';
 import ${fileName} from './${fileName}';
 
 describe('${fileName} Component', () => {
@@ -36,6 +39,29 @@ describe('${fileName} Component', () => {
   it('🌀 should match snapshot', () => {
     const { container } = render(<${fileName} />);
     expect(container).toMatchSnapshot();
+  });
+
+  it('🧩 should apply props correctly', () => {
+    const testProp = 'Test Title';
+    render(<${fileName} title={testProp} />);
+    expect(screen.getByText(testProp)).toBeInTheDocument();
+  });
+  
+  ${
+    hasButton
+      ? `it('🎯 should handle button click events', () => {
+    const handleClick = jest.fn();
+    render(<${fileName} onClick={handleClick} />);
+    const button = screen.getByRole('button');
+    fireEvent.click(button);
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });`
+      : ''
+  }
+
+  it('📘 should have accessible ARIA roles', () => {
+    render(<${fileName} />);
+    expect(screen.getByRole('heading')).toBeInTheDocument();
   });
 });
 `
