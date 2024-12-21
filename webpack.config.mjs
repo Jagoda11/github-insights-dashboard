@@ -5,6 +5,7 @@ export default {
   output: {
     filename: 'bundle.js',
     path: path.resolve('dist'),
+    publicPath: '/github-insights-dashboard/',
   },
   module: {
     rules: [
