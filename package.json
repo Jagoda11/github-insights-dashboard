@@ -1,6 +1,6 @@
 {
   "name": "github-insights-dashboard",
-  "homepage": "https://github.com/Jagoda11/github-insights-dashboard",
+  "homepage": "https://Jagoda11.github.io/github-insights-dashboard",
   "version": "1.0.0",
   "type": "module",
   "description": "React app: dashboard for checking commit history with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS",
