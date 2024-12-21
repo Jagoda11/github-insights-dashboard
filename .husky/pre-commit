@@ -1,4 +1,0 @@
-#!/bin/sh
-
-echo "🔒 Precommit: Linting and testing code..."
-npm run lint && npm test
