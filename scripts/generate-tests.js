@@ -9,8 +9,9 @@ const generateTestForFile = (filePath) => {
   const fileName = path.basename(filePath, path.extname(filePath))
   const testFilePath = path.join(dirName, `${fileName}.test.tsx`)
 
-  if (fileName === 'index') {
-    console.log(`⚠️ Skipping test generation for: ${filePath}`)
+  // Skip index.tsx and App.tsx files
+  if (fileName === 'index.tsx' || fileName === 'App.tsx') {
+    console.log(`⚠️ Skipping ${fileName} file: ${fullPath}`)
     return
   }
 
