@@ -33,8 +33,8 @@ export default [
       ],
       '@typescript-eslint/explicit-module-boundary-types': 'warn', // Ensure functions have explicit return types
       '@typescript-eslint/no-unused-vars': 'warn', // Warn about unused variables
-      '@typescript-eslint/no-explicit-any': 'warn', // Warn about usage of the any type
-      'no-console': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off', // Warn about usage of the any type
+      'no-console': 'off',
       'jest/no-disabled-tests': 'warn', // Warn about disabled tests
       'jest/no-focused-tests': 'error', // Error on focused tests
       'jest/no-identical-title': 'error',

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
 import CommitList from './components/CommitList'
-import { fetchUserRepos } from './api/githubApi'
 
 const App: React.FC = () => {
   const token = localStorage.getItem('githubToken')
-  const username = localStorage.getItem('githubUsername') ?? ''
 
   const isLocal = window.location.origin.includes('localhost')
   const basename = isLocal ? '/' : '/github-insights-dashboard'
@@ -27,10 +25,7 @@ const App: React.FC = () => {
           ) : (
             <>
               <Route path="/" element={<Dashboard />} />
-              <Route
-                path="/commits"
-                element={<CommitList owner={username} />}
-              />
+              <Route path="/commits" element={<CommitList />} />
             </>
           )}
         </Routes>
