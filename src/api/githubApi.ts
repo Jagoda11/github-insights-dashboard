@@ -49,10 +49,11 @@ export const getRepoLanguages = async (
 export const getRepoCommits = async (
   owner: string,
   repo: string,
+  page: number = 1,
+  per_page: number = 100,
 ): Promise<any> => {
-  const response = await fetch(`${HOST}/repos/${owner}/${repo}/commits`, {
-    headers,
-  })
+  const url = `${HOST}/repos/${owner}/${repo}/commits?page=${page}&per_page=${per_page}`
+  const response = await fetch(url, { headers })
   if (!response.ok) {
     if (response.status === 409) {
       // Handle 409 Conflict error specifically
