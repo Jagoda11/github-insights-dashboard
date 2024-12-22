@@ -45,8 +45,6 @@ jobs:
           fi
         shell: /usr/bin/bash -e {0}
 
-      - name: Check dist folder
-        run: ls -la ./dist
       # Deploy build to GitHub Pages
       - name: 🚀 Deploy dist to GitHub Pages
         if: ${{ github.ref == 'refs/heads/main' }}
