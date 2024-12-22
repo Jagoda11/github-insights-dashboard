@@ -8,6 +8,7 @@ import {
 import CommitFrequencyChart from './CommitFrequencyChart'
 import ProgrammingLanguagesChart from './ProgrammingLanguagesChart'
 import Summary from './Summary'
+import Loader from './Loader'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -37,6 +38,7 @@ const Dashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [year] = useState<number>(new Date().getFullYear())
   const [totalCommits, setTotalCommits] = useState<number>(0)
+  const [totalStars, setTotalStars] = useState<number>(0)
   const [username] = useState<string>(
     localStorage.getItem('githubUsername') ?? '',
   )
@@ -105,6 +107,7 @@ const Dashboard: React.FC = () => {
       ]
       const totalCommitsPerMonth = Array(12).fill(0)
       let yearlyCommitCount = 0
+      let totalStarsCount = 0
 
       commitResults.forEach((repoCommits: any) => {
         repoCommits.forEach((commit: any) => {
@@ -116,6 +119,10 @@ const Dashboard: React.FC = () => {
             yearlyCommitCount += 1
           }
         })
+      })
+
+      repos.forEach((repo: any) => {
+        totalStarsCount += repo.stargazers_count
       })
 
       const commitData = {
@@ -178,6 +185,7 @@ const Dashboard: React.FC = () => {
       setCommitData(commitData)
       setLanguageData(languageData)
       setTotalCommits(yearlyCommitCount)
+      setTotalStars(totalStarsCount)
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message)
@@ -208,22 +216,28 @@ const Dashboard: React.FC = () => {
 
       {error && <p className="text-red-500">{error}</p>}
       <div className="mb-4"></div>
-      <div className="flex flex-wrap justify-between">
-        <div className="w-full lg:w-2/3 p-2">
-          <CommitFrequencyChart loading={loading} commitData={commitData} />
-          <ProgrammingLanguagesChart
-            loading={loading}
-            languageData={languageData}
-          />
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="flex flex-wrap justify-between">
+          <div className="w-full lg:w-2/3 p-2">
+            <CommitFrequencyChart loading={loading} commitData={commitData} />
+            <div className="mt-4">
+              <ProgrammingLanguagesChart
+                loading={loading}
+                languageData={languageData}
+              />
+            </div>
+          </div>
+          <div className="w-full lg:w-1/3 p-2 flex flex-col gap-6">
+            <Summary
+              loading={loading}
+              userInfo={{ ...userInfo, total_stars: totalStars }}
+              totalCommits={totalCommits}
+            />
+          </div>
         </div>
-        <div className="w-full lg:w-1/3 p-2 flex flex-col justify-between">
-          <Summary
-            loading={loading}
-            userInfo={userInfo}
-            totalCommits={totalCommits}
-          />
-        </div>
-      </div>
+      )}
     </div>
   )
 }

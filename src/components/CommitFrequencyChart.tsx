@@ -12,7 +12,7 @@ const CommitFrequencyChart: React.FC<CommitFrequencyChartProps> = ({
 }) => {
   return (
     <div className="mb-4">
-      <h2 className="text-xl mb-2">Commit Frequency</h2>
+      <h2 className="text-2xl font-semibold mb-4">Commit Frequency</h2>
       {loading || !commitData ? <p>Loading...</p> : <Bar data={commitData} />}
     </div>
   )
