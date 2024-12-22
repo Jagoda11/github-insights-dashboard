@@ -1,19 +1,49 @@
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
 export default {
-  entry: './src/index.ts',
+  mode: 'development',
+  entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve('dist'),
     publicPath: '/github-insights-dashboard/',
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['react-refresh/babel'],
+          },
+        },
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
+  devServer: {
+    static: {
+      directory: path.join('public'),
+    },
+    historyApiFallback: true,
+    compress: true,
+    hot: true,
+    port: 3000,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+    new ReactRefreshWebpackPlugin(),
+  ],
 }
