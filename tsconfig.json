@@ -13,11 +13,7 @@
     "lib": ["esnext", "dom"],
     "typeRoots": ["node_modules/@types"],
     "resolveJsonModule": true,
-    "baseUrl": ".",
     "allowJs": true,
-    "paths": {
-      "@/*": ["src/*"]
-    },
     "jsx": "react",
     "moduleResolution": "node"
   },
