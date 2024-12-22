@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-console */
 import { greet } from '../src/index'
 describe('👋 greet function', () => {
   it('👋 should print a greeting message', () => {
