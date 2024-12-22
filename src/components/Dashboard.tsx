@@ -208,16 +208,22 @@ const Dashboard: React.FC = () => {
 
       {error && <p className="text-red-500">{error}</p>}
       <div className="mb-4"></div>
-      <CommitFrequencyChart loading={loading} commitData={commitData} />
-      <ProgrammingLanguagesChart
-        loading={loading}
-        languageData={languageData}
-      />
-      <Summary
-        loading={loading}
-        userInfo={userInfo}
-        totalCommits={totalCommits}
-      />
+      <div className="flex flex-wrap justify-between">
+        <div className="w-full lg:w-2/3 p-2">
+          <CommitFrequencyChart loading={loading} commitData={commitData} />
+          <ProgrammingLanguagesChart
+            loading={loading}
+            languageData={languageData}
+          />
+        </div>
+        <div className="w-full lg:w-1/3 p-2 flex flex-col justify-between">
+          <Summary
+            loading={loading}
+            userInfo={userInfo}
+            totalCommits={totalCommits}
+          />
+        </div>
+      </div>
     </div>
   )
 }
