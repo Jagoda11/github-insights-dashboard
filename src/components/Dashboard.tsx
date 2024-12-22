@@ -1,22 +1,51 @@
 import React, { useEffect, useState } from 'react'
-import { Bar, Pie } from 'react-chartjs-2'
 import {
   getUserInfo,
   fetchUserRepos,
   getRepoCommitActivity,
   getRepoLanguages,
 } from '../api/githubApi'
+import Filters from './Filters'
+import CommitFrequencyChart from './CommitFrequencyChart'
+import ProgrammingLanguagesChart from './ProgrammingLanguagesChart'
+import Summary from './Summary'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+} from 'chart.js'
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+)
 
 const Dashboard: React.FC = () => {
   const [commitData, setCommitData] = useState<any>(null)
   const [languageData, setLanguageData] = useState<any>(null)
   const [userInfo, setUserInfo] = useState<any>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+  const [year, setYear] = useState<number>(new Date().getFullYear())
   const username = localStorage.getItem('githubUsername')
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!username) return
+  const fetchData = async () => {
+    if (!username) return
 
+    setLoading(true)
+    setError(null)
+
+    try {
       const user = await getUserInfo(username)
       setUserInfo(user)
 
@@ -45,12 +74,24 @@ const Dashboard: React.FC = () => {
         ],
       }
 
+      // Aggregate language data across all repositories
+      const aggregatedLanguages: { [key: string]: number } = {}
+      languageResults.forEach((repoLanguages: any) => {
+        Object.entries(repoLanguages).forEach(([language, count]) => {
+          if (aggregatedLanguages[language]) {
+            aggregatedLanguages[language] += count as number
+          } else {
+            aggregatedLanguages[language] = count as number
+          }
+        })
+      })
+
       // Process language data for the pie chart
       const languageData = {
-        labels: Object.keys(languageResults[0]),
+        labels: Object.keys(aggregatedLanguages),
         datasets: [
           {
-            data: Object.values(languageResults[0]),
+            data: Object.values(aggregatedLanguages),
             backgroundColor: [
               '#FF6384',
               '#36A2EB',
@@ -65,34 +106,34 @@ const Dashboard: React.FC = () => {
 
       setCommitData(commitData)
       setLanguageData(languageData)
+    } catch (error) {
+      setError('Failed to fetch data. Please try again.')
+    } finally {
+      setLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchData()
-  }, [username])
+    const interval = setInterval(fetchData, 15 * 60 * 1000) // Auto-refresh every 15 minutes
+    return () => clearInterval(interval)
+  }, [username, year])
+
+  const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setYear(Number(event.target.value))
+  }
 
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-4">GitHub Insights Dashboard</h1>
-      <div className="mb-4">
-        <h2 className="text-xl mb-2">Commit Frequency</h2>
-        {commitData ? <Bar data={commitData} /> : <p>Loading...</p>}
-      </div>
-      <div className="mb-4">
-        <h2 className="text-xl mb-2">Programming Languages</h2>
-        {languageData ? <Pie data={languageData} /> : <p>Loading...</p>}
-      </div>
-      <div className="mb-4">
-        <h2 className="text-xl mb-2">Summary</h2>
-        {userInfo ? (
-          <div>
-            <p>Projects: {userInfo.public_repos}</p>
-            <p>Followers: {userInfo.followers}</p>
-            <p>Following: {userInfo.following}</p>
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
+      {error && <p className="text-red-500">{error}</p>}
+      <Filters year={year} handleYearChange={handleYearChange} />
+      <CommitFrequencyChart loading={loading} commitData={commitData} />
+      <ProgrammingLanguagesChart
+        loading={loading}
+        languageData={languageData}
+      />
+      <Summary loading={loading} userInfo={userInfo} />
     </div>
   )
 }

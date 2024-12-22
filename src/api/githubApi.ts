@@ -54,6 +54,12 @@ export const getRepoCommits = async (
     headers,
   })
   if (!response.ok) {
+    if (response.status === 409) {
+      // Handle 409 Conflict error specifically
+      throw new Error(
+        `Repository ${repo} is in a state that prevents fetching commits (status: 409)`,
+      )
+    }
     throw new Error(`Failed to fetch commits with status: ${response.status}`)
   }
   const data = await response.json()
