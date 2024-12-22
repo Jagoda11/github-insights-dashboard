@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
+
+import { greet } from "."
+
 /* eslint-disable no-console */
-import { greet } from './index'
 describe('👋 greet function', () => {
   it('👋 should print a greeting message', () => {
     const consoleSpy = jest.spyOn(console, 'log')
