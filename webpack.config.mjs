@@ -1,13 +1,17 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default {
   mode: 'development',
   entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve('dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/github-insights-dashboard/',
   },
   resolve: {
@@ -33,12 +37,14 @@ export default {
   },
   devServer: {
     static: {
-      directory: path.join('public'),
+      directory: path.join(__dirname, 'public'),
     },
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: '/github-insights-dashboard/index.html',
+    },
     compress: true,
     hot: true,
-    port: 3000,
+    port: 3002,
   },
   plugins: [
     new HtmlWebpackPlugin({

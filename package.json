@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "React app: dashboard for checking commit history with TypeScript, ESLint, Prettier, Jest, Husky, and TailwindCSS",
+  "main": "src/index.tsx",
   "scripts": {
-    "start": "echo '🚀 Starting the app...' && webpack serve --config webpack.config.mjs && echo '🌟✨ App is up and running! Visit http://localhost:3000 ✨'",
+    "start": "echo '🚀 Starting the app...' && webpack serve --config webpack.config.mjs && echo '🌟✨ App is up and running! Visit http://localhost:3002 ✨'",
     "build": "echo '🔨 Building the app...' && webpack --config webpack.config.mjs && echo '🏗️✨ Build completed! Your app is ready! ✨'",
     "test": "echo '🧪 Running tests...' && jest --config jest.config.cjs --coverage",
     "format": "echo '🖋️ Formatting code... Please wait.' && prettier --write . && echo '✅ Your code is formatted!'",
