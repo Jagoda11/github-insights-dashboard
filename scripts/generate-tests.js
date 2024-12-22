@@ -9,6 +9,11 @@ const generateTestForFile = (filePath) => {
   const fileName = path.basename(filePath, path.extname(filePath))
   const testFilePath = path.join(dirName, `${fileName}.test.tsx`)
 
+  if (fileName === 'index') {
+    console.log(`⚠️ Skipping test generation for: ${filePath}`)
+    return
+  }
+
   if (fs.existsSync(testFilePath)) {
     console.log(`⚠️ Test file already exists: ${testFilePath}`)
     return
@@ -32,43 +37,43 @@ const generateTestForFile = (filePath) => {
       fileContent.includes('<button') || fileContent.includes('onClick')
 
     testTemplate = `${importStatement}
-import React from 'react'
-import { render, screen${hasButton ? ', fireEvent' : ''} } from '@testing-library/react'
+import React from 'react';
+import { render, screen${hasButton ? ', fireEvent' : ''} } from '@testing-library/react';
 
 describe('${fileName} Component', () => {
   it('🚀 should render without crashing', () => {
-    render(<${fileName} />)
-    expect(screen.getByText(/your test content/i)).toBeInTheDocument()
-  })
+    render(<${fileName} />);
+    expect(screen.getByText(/your test content/i)).toBeInTheDocument();
+  });
 
   it('🌀 should match snapshot', () => {
-    const { container } = render(<${fileName} />)
-    expect(container).toMatchSnapshot()
-  })
+    const { container } = render(<${fileName} />);
+    expect(container).toMatchSnapshot();
+  });
 
   it('🧩 should apply props correctly', () => {
-    const testProp = 'Test Title'
-    render(<${fileName} title={testProp} />)
-    expect(screen.getByText(testProp)).toBeInTheDocument()
-  })
+    const testProp = 'Test Title';
+    render(<${fileName} title={testProp} />);
+    expect(screen.getByText(testProp)).toBeInTheDocument();
+  });
 
   ${
     hasButton
       ? `it('🎯 should handle button click events', () => {
-    const handleClick = jest.fn()
-    render(<${fileName} onClick={handleClick} />)
-    const button = screen.getByRole('button')
-    fireEvent.click(button)
-    expect(handleClick).toHaveBeenCalledTimes(1)
-  })`
+    const handleClick = jest.fn();
+    render(<${fileName} onClick={handleClick} />);
+    const button = screen.getByRole('button');
+    fireEvent.click(button);
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });`
       : ''
   }
 
   it('📘 should have accessible ARIA roles', () => {
-    render(<${fileName} />)
-    expect(screen.getByRole('heading')).toBeInTheDocument()
-  })
-})
+    render(<${fileName} />);
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+  });
+});
 `
   } else {
     // Generic Test Template
@@ -77,9 +82,9 @@ describe('${fileName} Component', () => {
 
 describe('${fileName}', () => {
   it('✅ should be defined', () => {
-    expect(${fileName}).toBeDefined()
-  })
-})
+    expect(${fileName}).toBeDefined();
+  });
+});
 `
   }
 
@@ -90,6 +95,11 @@ describe('${fileName}', () => {
 const traverseDirectory = (dir) => {
   fs.readdirSync(dir).forEach((file) => {
     const fullPath = path.join(dir, file)
+    const fileName = path.basename(file)
+    if (fileName === 'index.tsx') {
+      console.log(`⚠️ Skipping index.tsx file: ${fullPath}`)
+      return
+    }
     if (fs.lstatSync(fullPath).isDirectory()) {
       traverseDirectory(fullPath)
     } else if (/\.(jsx|tsx)$/.test(file) && !/\.test\.tsx$/.test(file)) {
