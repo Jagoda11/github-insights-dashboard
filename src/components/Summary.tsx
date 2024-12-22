@@ -1,15 +1,15 @@
-import React from 'react';
-import Loader from './Loader';
+import React from 'react'
+import Loader from './Loader'
 
 interface SummaryProps {
-  loading: boolean;
+  loading: boolean
   userInfo: {
-    public_repos: number;
-    followers: number;
-    following: number;
-    total_stars: number;
-  } | null;
-  totalCommits: number;
+    public_repos: number
+    followers: number
+    following: number
+    total_stars: number
+  } | null
+  totalCommits: number
 }
 
 const Summary: React.FC<SummaryProps> = ({
@@ -25,7 +25,7 @@ const Summary: React.FC<SummaryProps> = ({
       ) : (
         userInfo && (
           <div className="flex flex-col gap-6">
-            <div className="flex flex-col items-center bg-blue-100 py-4 px-4 rounded-lg shadow-inner">
+            <div className="flex flex-col items-center bg-blue-100 py-5 px-5 rounded-lg shadow-inner">
               <svg
                 className="w-12 h-12 text-blue-500 mb-2"
                 fill="none"
@@ -45,7 +45,7 @@ const Summary: React.FC<SummaryProps> = ({
                 {userInfo.public_repos}
               </p>
             </div>
-            <div className="flex flex-col items-center bg-green-100 py-4 px-4 rounded-lg shadow-inner">
+            <div className="flex flex-col items-center bg-green-100 py-5 px-5 rounded-lg shadow-inner">
               <svg
                 className="w-12 h-12 text-green-500 mb-2"
                 fill="none"
@@ -65,7 +65,7 @@ const Summary: React.FC<SummaryProps> = ({
                 {userInfo.followers}
               </p>
             </div>
-            <div className="flex flex-col items-center bg-purple-100 py-4 px-4 rounded-lg shadow-inner">
+            <div className="flex flex-col items-center bg-purple-100 py-5 px-5 rounded-lg shadow-inner">
               <svg
                 className="w-12 h-12 text-purple-500 mb-2"
                 fill="none"
@@ -85,7 +85,7 @@ const Summary: React.FC<SummaryProps> = ({
                 {userInfo.following}
               </p>
             </div>
-            <div className="flex flex-col items-center bg-yellow-100 py-4 px-4 rounded-lg shadow-inner">
+            <div className="flex flex-col items-center bg-yellow-100 py-5 px-5 rounded-lg shadow-inner">
               <svg
                 className="w-12 h-12 text-yellow-500 mb-2"
                 fill="none"
@@ -105,7 +105,7 @@ const Summary: React.FC<SummaryProps> = ({
                 {totalCommits}
               </p>
             </div>
-            <div className="flex flex-col items-center bg-red-100 py-6 px-4 rounded-lg shadow-inner">
+            <div className="flex flex-col items-center bg-red-100 py-7 px-5 rounded-lg shadow-inner">
               <svg
                 className="w-12 h-12 text-red-500 mb-2"
                 fill="none"
@@ -129,7 +129,7 @@ const Summary: React.FC<SummaryProps> = ({
         )
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Summary;
+export default Summary
