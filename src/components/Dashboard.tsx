@@ -5,7 +5,6 @@ import {
   getRepoCommits,
   getRepoLanguages,
 } from '../api/githubApi'
-import Filters from './Filters'
 import CommitFrequencyChart from './CommitFrequencyChart'
 import ProgrammingLanguagesChart from './ProgrammingLanguagesChart'
 import Summary from './Summary'
@@ -36,9 +35,9 @@ const Dashboard: React.FC = () => {
   const [userInfo, setUserInfo] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const [year, setYear] = useState<number>(new Date().getFullYear())
+  const [year] = useState<number>(new Date().getFullYear())
   const [totalCommits, setTotalCommits] = useState<number>(0)
-  const [username, setUsername] = useState<string>(
+  const [username] = useState<string>(
     localStorage.getItem('githubUsername') ?? '',
   )
 
@@ -201,43 +200,14 @@ const Dashboard: React.FC = () => {
     }
   }, [username, year])
 
-  const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedYear = Number(event.target.value)
-    setYear(selectedYear)
-    if (username) {
-      fetchData(selectedYear, username)
-    }
-  }
-
-  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newUsername = event.target.value
-    setUsername(newUsername)
-    localStorage.setItem('githubUsername', newUsername)
-    if (newUsername) {
-      fetchData(year, newUsername)
-    }
-  }
-
   return (
     <div className="p-4">
-      <h1 className="text-2xl mb-4">GitHub Insights Dashboard</h1>
+      <h1 className="text-4xl font-extrabold text-center text-blue-800 mb-8">
+        GitHub Insights Dashboard
+      </h1>
+
       {error && <p className="text-red-500">{error}</p>}
-      <div className="mb-4">
-        <label
-          htmlFor="username"
-          className="block text-sm font-medium text-gray-700"
-        >
-          GitHub Username
-        </label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={handleUsernameChange}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
-      <Filters year={year} handleYearChange={handleYearChange} />
+      <div className="mb-4"></div>
       <CommitFrequencyChart loading={loading} commitData={commitData} />
       <ProgrammingLanguagesChart
         loading={loading}
