@@ -2,6 +2,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
+import CommitList from './components/CommitList'
 
 const App: React.FC = () => {
   const token = localStorage.getItem('githubToken')
@@ -16,7 +17,10 @@ const App: React.FC = () => {
         {!token ? (
           <Route path="/" element={<Auth />} />
         ) : (
-          <Route path="/" element={<Dashboard />} />
+          <>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/commits" element={<CommitList />} />
+          </>
         )}
       </Routes>
     </Router>

@@ -41,9 +41,9 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           if ls src/**/*.test.tsx 1> /dev/null 2>&1; then
-            git add src/**/*.test.tsx
+            git add -A src/**/*.test.tsx # Include untracked files
             git commit -m '🤖 Generated unit tests'
-            git push
+            git push || echo "No changes to push."
           else
             echo "No test files to commit. Skipping this step."
           fi
