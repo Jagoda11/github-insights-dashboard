@@ -22,7 +22,7 @@ const Summary: React.FC<SummaryProps> = ({
         <p className="text-gray-500">Loading...</p>
       ) : (
         userInfo && (
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          <div className="flex flex-col gap-4">
             <div className="flex flex-col items-center bg-blue-100 p-4 rounded-lg shadow-inner">
               <svg
                 className="w-12 h-12 text-blue-500 mb-2"
