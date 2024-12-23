@@ -1,4 +1,5 @@
 # 🚀 GitHub Insights Dashboard
+
 [![Deploy to GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-View%20Live-brightgreen)](https://jagoda11.github.io/github-insights-dashboard/)
 ![License: MIT](https://img.shields.io/badge/license-MIT-pink)
 ![Open Issues](https://img.shields.io/github/issues/Jagoda11/github-insights-dashboard?style=flat-square&color=orange)
