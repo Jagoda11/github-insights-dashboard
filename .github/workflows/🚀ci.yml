@@ -36,16 +36,16 @@ jobs:
         run: npm run build
       - name: 🧪 Test with coverage
         run: npm run test
-      - name: 📤 Commit and push generated test files
+      - name: 📤 Commit and push all changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          if ls src/**/*.test.tsx 1> /dev/null 2>&1; then
-            git add -A src/**/*.test.tsx # Include untracked files
-            git commit -m '🤖 Generated unit tests'
-            git push || echo "No changes to push."
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m '🤖 Auto-commit changes from CI'
+            git push
           else
-            echo "No test files to commit. Skipping this step."
+            echo "No changes detected. Skipping commit."
           fi
         shell: /usr/bin/bash -e {0}
 
