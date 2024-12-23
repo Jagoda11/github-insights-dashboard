@@ -1,12 +1,11 @@
 import React from 'react'
-import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
 import CommitList from './components/CommitList'
 
 const App: React.FC = () => {
   const token = localStorage.getItem('githubToken')
-
   return (
     <Router basename="/github-insights-dashboard">
       <div className="p-4">
