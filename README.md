@@ -1,5 +1,5 @@
 # 🚀 GitHub Insights Dashboard
-
+[![Deploy to GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-View%20Live-brightgreen)](https://jagoda11.github.io/github-insights-dashboard/)
 ![License: MIT](https://img.shields.io/badge/license-MIT-pink)
 ![Open Issues](https://img.shields.io/github/issues/Jagoda11/github-insights-dashboard?style=flat-square&color=orange)
 ![Last Commit](https://img.shields.io/github/last-commit/Jagoda11/github-insights-dashboard/main?style=flat-square&color=yellow)
@@ -21,6 +21,10 @@ An interactive dashboard to visualize GitHub user activity, including commits, p
 - Husky 🐶
 
 This setup aims to provide a robust starting point, allowing you to focus on building your application without the hassle of setting up a development environment from scratch.
+
+## Live Demo
+
+👉 [Click here to view the live version](https://jagoda11.github.io/github-insights-dashboard/)
 
 ## Features
 
