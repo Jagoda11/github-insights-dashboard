@@ -9,6 +9,7 @@
     "start": "echo '🚀 Starting the app...' && webpack serve --config webpack.config.mjs && echo '🌟✨ App is up and running! Visit http://localhost:3002/github-insights-dashboard/ ✨'",
     "build": "echo '🔨 Building the app...' && webpack --config webpack.config.mjs && echo '🏗️✨ Build completed! Your app is ready! ✨'",
     "test": "echo '🧪 Running tests...' && jest --config jest.config.cjs --coverage",
+    "test:e2e": "echo '🎭 Running Playwright E2E tests...' && npx playwright test",
     "format": "echo '🖋️ Formatting code... Please wait.' && prettier --write . && echo '✅ Your code is formatted!'",
     "lint": "echo '🧹 Linting code... Please wait.' && eslint -c eslint.config.js . && echo '✅ Linting complete. Your code is clean!'",
     "lint-fix": "echo '🔧 Linting and fixing issues...' && eslint --fix . && prettier --write .",

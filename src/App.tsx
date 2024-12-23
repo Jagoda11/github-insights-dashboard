@@ -7,11 +7,8 @@ import CommitList from './components/CommitList'
 const App: React.FC = () => {
   const token = localStorage.getItem('githubToken')
 
-  const isLocal = window.location.origin.includes('localhost')
-  const basename = isLocal ? '/' : '/github-insights-dashboard'
-
   return (
-    <Router basename={basename}>
+    <Router basename="/github-insights-dashboard">
       <div className="p-4">
         <nav className="mb-4">
           <Link to="/" className="mr-4">
