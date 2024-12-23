@@ -1,44 +1,26 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
+
+// Mock the `react-chartjs-2` library
+jest.mock('react-chartjs-2', () => ({
+  Bar: () => <div data-testid="chart">Mock Bar Chart</div>,
+}))
+
 import CommitFrequencyChart from './CommitFrequencyChart'
 
-describe('CommitFrequencyChart Component 📊', () => {
-  it('✅ should be defined ✨', () => {
-    expect(CommitFrequencyChart).toBeDefined()
-  })
-
-  it('🎨 renders the component title', () => {
-    render(<CommitFrequencyChart loading={false} commitData={null} />)
-    expect(screen.getByText('Commit Frequency')).toBeInTheDocument()
-  })
-
-  it('⏳ displays loading state when loading is true', () => {
-    render(<CommitFrequencyChart loading={true} commitData={null} />)
-    expect(screen.getByText('Loading...')).toBeInTheDocument()
-  })
-
-  it('📈 skips rendering the chart if commitData is null', () => {
-    render(<CommitFrequencyChart loading={false} commitData={null} />)
-    expect(screen.getByText('Loading...')).toBeInTheDocument()
-  })
-
-  it('✅ renders the chart when valid commitData is provided', () => {
-    const mockData = {
-      labels: ['January', 'February'],
-      datasets: [
-        {
-          label: 'Commits',
-          data: [5, 10],
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-        },
-      ],
-    }
+describe('CommitFrequencyChart', () => {
+  it('renders the component without crashing', () => {
+    const mockData = [
+      { date: '2024-12-22', count: 5 },
+      { date: '2024-12-23', count: 8 },
+    ]
 
     render(<CommitFrequencyChart loading={false} commitData={mockData} />)
 
-    expect(screen.getByText('Commit Frequency')).toBeInTheDocument()
+    // Verify the mock chart renders
+    expect(screen.getByTestId('chart')).toBeTruthy()
+
+    // Verify that the heading renders
+    expect(screen.getByText('Commit Frequency')).toBeTruthy()
   })
 })

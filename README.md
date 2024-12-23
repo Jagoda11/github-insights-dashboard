@@ -22,12 +22,40 @@ An interactive dashboard to visualize GitHub user activity, including commits, p
 
 This setup aims to provide a robust starting point, allowing you to focus on building your application without the hassle of setting up a development environment from scratch.
 
+## Features
+
+### 1. **Dashboard Overview**
+
+Provides an intuitive interface for navigating between charts and lists, giving users a comprehensive view of their GitHub data.
+
+![Dashboard Screenshot](./assets/dashboard.png)
+
+### 2. **Commit Frequency**
+
+Displays a bar chart visualizing commits by month to help users analyze contribution trends.
+
+![Commit Frequency Chart](./assets/commit-chart.png)
+
+### 3. **Commit List**
+
+Lists all commits with details such as the author, message, and commit date, allowing users to filter and view specific activity.
+
+![Commit List Screenshot](./assets/commit-list.png)
+
+### 4. **Programming Languages**
+
+Shows a pie chart of the programming languages used across repositories, highlighting your most frequently used languages.
+
+![Programming Languages Chart](./assets/language-chart.png)
+
 ## 🚀 Initial Setup
 
-First, install the project dependencies:
+To get started, clone the repository and install dependencies:
 
 ```bash
-npm install
+git clone https://github.com/Jagoda11/github-insights-dashboard.git
+cd github-insights-dashboard
+npm install --legacy-peer-deps
 ```
 
 ## ⚠️ Note on Commits
