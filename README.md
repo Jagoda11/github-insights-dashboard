@@ -20,12 +20,16 @@ An interactive dashboard to visualize GitHub user activity, including commits, p
 - Prettier 🖋️
 - Jest 🃏
 - Husky 🐶
-
-This setup aims to provide a robust starting point, allowing you to focus on building your application without the hassle of setting up a development environment from scratch.
+- gh-actions 🐢🐢
+- gh-pages 🐌
 
 ## Live Demo
 
 👉 [Click here to view the live version](https://jagoda11.github.io/github-insights-dashboard/)
+
+## Authentication with GitHub Personal Access Token (PAT)
+
+This application requires authentication using a GitHub Personal Access Token (PAT).
 
 ## Features
 
