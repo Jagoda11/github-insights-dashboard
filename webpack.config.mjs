@@ -39,9 +39,7 @@ export default {
     static: {
       directory: path.join(__dirname, 'public'),
     },
-    historyApiFallback: {
-      index: '/github-insights-dashboard/index.html',
-    },
+    historyApiFallback: true,
     compress: true,
     hot: true,
     port: 3002,

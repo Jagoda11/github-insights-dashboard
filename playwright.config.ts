@@ -6,11 +6,11 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineConfig({
-  testDir: './e2e-tests', // Adjusted to point to the root's e2e-tests folder
-  timeout: 30000, // Timeout for each test
-  retries: 2, // Retry failed tests
+  testDir: './e2e-tests', // Ensure this matches your test folder
+  timeout: 30000,
+  retries: 2,
   use: {
-    headless: true, // Run tests in headless mode
+    headless: true,
     baseURL: `file://${resolve(__dirname, './dist/github-insights-dashboard/index.html')}`, // Path to your built app
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
