@@ -18,8 +18,8 @@ const Auth: React.FC = () => {
           <img
             src={`${
               window.location.hostname === 'localhost'
-                ? '/github-mark.png'
-                : '/github-insights-dashboard/github-mark.png'
+                ? '/GithubMark.png'
+                : '/github-insights-dashboard/GithubMark.png'
             }`}
             alt="GitHub Logo"
             className="w-32 h-32"
