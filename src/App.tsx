@@ -15,12 +15,16 @@ const App: React.FC = () => {
   return (
     <Router basename="/github-insights-dashboard">
       <div className="p-4">
-        <nav className="mb-4">
-          <Link to="/" className="mr-4">
-            Dashboard
-          </Link>
-          <Link to="/commits">Commit List</Link>
-        </nav>
+        {token && (
+          <nav className="mb-4 flex justify-center space-x-4">
+            <Link to="/" className="text-blue-500 hover:text-blue-700">
+              Dashboard
+            </Link>
+            <Link to="/commits" className="text-blue-500 hover:text-blue-700">
+              Commit List
+            </Link>
+          </nav>
+        )}
         <Routes>
           {!token ? (
             <Route path="/" element={<Auth />} />
