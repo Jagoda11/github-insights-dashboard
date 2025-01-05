@@ -71,13 +71,13 @@ Start the development server:
 
 ```bash
    npm start
-   ```
+```
 
 Open your browser and navigate to:
 
 ```bash
    http://localhost:3002/github-insights-dashboard
-   ```
+```
 
 ## ⚠️ Note on Commits
 
