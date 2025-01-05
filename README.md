@@ -67,6 +67,18 @@ cd github-insights-dashboard
 npm install --legacy-peer-deps
 ```
 
+Start the development server:
+
+```bash
+   npm start
+   ```
+
+Open your browser and navigate to:
+
+```bash
+   http://localhost:3002/github-insights-dashboard
+   ```
+
 ## ⚠️ Note on Commits
 
 If you're having trouble making a commit, it might be due to the `precommit` hook, which runs the `lint` and `test` scripts before each commit. If these scripts find any errors, the commit will be blocked. Check the output for any lint or test errors and fix them before trying to commit again.
