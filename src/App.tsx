@@ -1,5 +1,11 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  Navigate,
+} from 'react-router-dom'
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
 import CommitList from './components/CommitList'
@@ -22,6 +28,7 @@ const App: React.FC = () => {
             <>
               <Route path="/" element={<Dashboard />} />
               <Route path="/commits" element={<CommitList />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </>
           )}
         </Routes>

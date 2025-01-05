@@ -43,6 +43,7 @@ export default {
     compress: true,
     hot: true,
     port: 3002,
+    open: ['/github-insights-dashboard/'],
   },
   plugins: [
     new HtmlWebpackPlugin({
