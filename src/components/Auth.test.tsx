@@ -26,7 +26,7 @@ describe('Auth Component 🎉', () => {
     expect(screen.getByText('GitHub Authentication')).toBeInTheDocument()
     expect(
       screen.getByText(
-        'To use this dashboard, you need to provide a GitHub Personal Access Token. This token allows the application to fetch data from your GitHub account.',
+        'To use this dashboard, you need to provide a GitHub Personal Access Token.',
       ),
     ).toBeInTheDocument()
     expect(screen.getByLabelText('GitHub Username:')).toBeInTheDocument()
