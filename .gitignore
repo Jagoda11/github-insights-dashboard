@@ -125,3 +125,4 @@ localhost_*.report.json
 /jest-tests/output/
 /jest-tests/results/
 /jest-tests/screenshots/
+.codegpt
