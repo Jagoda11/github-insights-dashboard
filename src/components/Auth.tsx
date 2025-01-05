@@ -11,19 +11,16 @@ const Auth: React.FC = () => {
     window.location.reload() // Reload to apply the token
   }
 
+  const imagePath =
+    window.location.hostname === 'localhost'
+      ? '/GithubMark.png'
+      : 'https://github.com/Jagoda11/github-insights-dashboard/blob/main/public/GithubMark.png?raw=true'
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-200 to-gray-400">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md transform transition-all duration-500 hover:scale-105">
         <div className="flex justify-center mb-6">
-          <img
-            src={`${
-              window.location.hostname === 'localhost'
-                ? '/GithubMark.png'
-                : '/github-insights-dashboard/GithubMark.png'
-            }`}
-            alt="GitHub Logo"
-            className="w-32 h-32"
-          />
+          <img src={imagePath} alt="GitHub Logo" className="w-32 h-32" />
         </div>
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
           GitHub Authentication
