@@ -13,19 +13,23 @@
 
 An interactive dashboard to visualize GitHub user activity, including commits, programming languages, and repository statistics.
 
-- React ⚛️ for building user interfaces.
-- Babel 🐵
-- TypeScript 🔵
-- ESLint 🛠️
-- Prettier 🖋️
-- Jest 🃏
-- Husky 🐶
-- gh-actions 🐢🐢
-- gh-pages 🐌
+- React ⚛️: For building user interfaces.
+- Babel 🐵: Transpiling JavaScript.
+- TypeScript 🔵: Type-safe coding.
+- ESLint 🛠️: Linting and code quality.
+- Prettier 🖋️: Code formatting.
+- Jest 🃏: Testing framework.
+- Husky 🐶: Git hooks for automation.
+- GitHub Actions 🐢🐢: For CI/CD infrastructure.
+- GitHub Pages 🐌: For easy and **free** deployment.
 
-## Live Demo
+## Deployment
 
-👉 [Click here to view the live version](https://jagoda11.github.io/github-insights-dashboard/)
+The web application is deployed on GitHub Pages and can be accessed at the following URL:
+
+👉 [GitHub Insights Dashboard](https://jagoda11.github.io/github-insights-dashboard/)
+
+GitHub Pages offers a **free** way to deploy static applications. Integration with GitHub allows for automatic updates with every push, making it a convenient option for hosting static sites. For more information, visit the [GitHub Pages documentation](https://docs.github.com/en/pages).
 
 ## Authentication with GitHub Personal Access Token (PAT)
 
