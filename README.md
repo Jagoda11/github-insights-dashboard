@@ -144,4 +144,9 @@ Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community appr
 ## 📝 License
 
 This project is licensed under the terms of the MIT License Agreement. For more details, see the [LICENSE](LICENSE.md) file.
+
+## Use of GitHub Logo
+
+The GitHub logo is used for authentication purposes in compliance with [GitHub’s branding guidelines](https://github.com/logos).
+
 © 2024 Jagoda11
