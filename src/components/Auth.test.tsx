@@ -66,7 +66,7 @@ describe('Auth Component 🎉', () => {
   it('🔗 contains a link to generate a GitHub token 🔑', () => {
     render(<Auth />)
     const link = screen.getByRole('link', {
-      name: 'Click here to generate a GitHub Personal Access Token',
+      name: 'Click here to generate a New GitHub Personal Access Token',
     })
 
     expect(link).toBeInTheDocument()

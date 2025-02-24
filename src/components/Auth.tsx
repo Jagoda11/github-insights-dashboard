@@ -55,7 +55,7 @@ const Auth: React.FC = () => {
               rel="noopener noreferrer"
               className="text-blue-500 underline hover:text-blue-700"
             >
-              Click here to generate a GitHub Personal Access Token
+              Click here to generate a New GitHub Personal Access Token
             </a>
           </p>
           <button

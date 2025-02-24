@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { getRepoCommits, fetchUserRepos, getUserInfo } from '../api/githubApi'
 
 interface Commit {
@@ -25,53 +25,58 @@ const CommitList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
-  const isValidUsername = (username: string) => {
-    // Check if the username is valid (e.g., not empty and meets GitHub username criteria)
-    return username.length >= 3 // Example criteria: at least 3 characters
-  }
+  const isValidUsername = useCallback((username: string) => {
+    return username.length >= 3
+  }, [])
 
-  const fetchCommits = async (owner: string) => {
-    if (owner && isValidUsername(owner)) {
-      setLoading(true)
-      setError(null)
-      try {
-        const userInfo = await getUserInfo(owner)
-        setAvatarUrl(userInfo.avatar_url)
+  const fetchCommits = useCallback(
+    async (owner: string) => {
+      if (owner && isValidUsername(owner)) {
+        setLoading(true)
+        setError(null)
+        try {
+          const userInfo = await getUserInfo(owner)
+          setAvatarUrl(userInfo.avatar_url)
 
-        const repos = await fetchUserRepos(owner)
-        const commitPromises = repos.map((repo: any) =>
-          getRepoCommits(owner, repo.name).catch((err) => {
-            console.error(`Failed to fetch commits for repo ${repo.name}:`, err)
-            return []
-          }),
-        )
-        const commitResults = await Promise.all(commitPromises)
-        const allCommits = commitResults
-          .flat()
-          .sort(
-            (a, b) =>
-              new Date(b.commit.author.date).getTime() -
-              new Date(a.commit.author.date).getTime(),
+          const repos = await fetchUserRepos(owner)
+          const commitPromises = repos.map((repo: any) =>
+            getRepoCommits(owner, repo.name).catch((err) => {
+              console.error(
+                `Failed to fetch commits for repo ${repo.name}:`,
+                err,
+              )
+              return []
+            }),
           )
-        setCommits(allCommits)
-        setFilteredCommits(allCommits)
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message)
-        } else {
-          setError('An unknown error occurred')
+          const commitResults = await Promise.all(commitPromises)
+          const allCommits = commitResults
+            .flat()
+            .sort(
+              (a, b) =>
+                new Date(b.commit.author.date).getTime() -
+                new Date(a.commit.author.date).getTime(),
+            )
+          setCommits(allCommits)
+          setFilteredCommits(allCommits)
+        } catch (error) {
+          if (error instanceof Error) {
+            setError(error.message)
+          } else {
+            setError('An unknown error occurred')
+          }
+        } finally {
+          setLoading(false)
         }
-      } finally {
-        setLoading(false)
       }
-    }
-  }
+    },
+    [isValidUsername],
+  )
 
   useEffect(() => {
     if (isValidUsername(username)) {
       fetchCommits(username)
     }
-  }, [username])
+  }, [username, fetchCommits, isValidUsername])
 
   useEffect(() => {
     const filtered = commits.filter((commit) =>

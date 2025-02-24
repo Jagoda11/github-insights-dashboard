@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {
   getUserInfo,
   fetchUserRepos,
@@ -36,7 +36,6 @@ const Dashboard: React.FC = () => {
   const [userInfo, setUserInfo] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const [year] = useState<number>(new Date().getFullYear())
   const [totalCommits, setTotalCommits] = useState<number>(0)
   const [totalStars, setTotalStars] = useState<number>(0)
   const [username] = useState<string>(
@@ -66,7 +65,7 @@ const Dashboard: React.FC = () => {
     return allCommits
   }
 
-  const fetchData = async (selectedYear: number, username: string) => {
+  const fetchData = useCallback(async (username: string) => {
     if (!username) return
 
     setLoading(true)
@@ -90,43 +89,30 @@ const Dashboard: React.FC = () => {
       const commitResults = await Promise.all(commitPromises)
       const languageResults = await Promise.all(languagePromises)
 
-      // Process commit data for the bar chart
-      const months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ]
-      const totalCommitsPerMonth = Array(12).fill(0)
-      let yearlyCommitCount = 0
-      let totalStarsCount = 0
+      const now = new Date()
+      const last12MonthsLabels: string[] = []
+      for (let i = 11; i >= 0; i--) {
+        const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
+        last12MonthsLabels.push(d.toLocaleString('default', { month: 'long' }))
+      }
+      const totalCommitsPerMonth = new Array(12).fill(0)
+      let commitCountLast12Months = 0
 
       commitResults.forEach((repoCommits: any) => {
         repoCommits.forEach((commit: any) => {
           const date = new Date(commit.commit.author.date)
-          const commitYear = date.getFullYear()
-          if (commitYear === selectedYear) {
-            const month = date.getMonth() // Get month index (0-11)
-            totalCommitsPerMonth[month] += 1
-            yearlyCommitCount += 1
+          const diffInMonths =
+            (now.getFullYear() - date.getFullYear()) * 12 +
+            (now.getMonth() - date.getMonth())
+          if (diffInMonths >= 0 && diffInMonths < 12) {
+            totalCommitsPerMonth[11 - diffInMonths] += 1
+            commitCountLast12Months += 1
           }
         })
       })
 
-      repos.forEach((repo: any) => {
-        totalStarsCount += repo.stargazers_count
-      })
-
       const commitData = {
-        labels: months,
+        labels: last12MonthsLabels,
         datasets: [
           {
             label: 'Commits',
@@ -150,33 +136,32 @@ const Dashboard: React.FC = () => {
         })
       })
 
-      // Process language data for the pie chart
       const languageData = {
         labels: Object.keys(aggregatedLanguages),
         datasets: [
           {
             data: Object.values(aggregatedLanguages),
             backgroundColor: [
-              '#FF6384', // Red
-              '#36A2EB', // Blue
-              '#FFCE56', // Yellow
-              '#4BC0C0', // Teal
-              '#8A2BE2', // BlueViolet
-              '#FF4500', // OrangeRed
-              '#32CD32', // LimeGreen
-              '#FFD700', // Gold
-              '#00FA9A', // MediumSpringGreen
-              '#DC143C', // Crimson
-              '#00BFFF', // DeepSkyBlue
-              '#FF1493', // DeepPink
-              '#8B4513', // SaddleBrown
-              '#2E8B57', // SeaGreen
-              '#FF6347', // Tomato
-              '#4682B4', // SteelBlue
-              '#D2691E', // Chocolate
-              '#A52A2A', // Brown
-              '#5F9EA0', // CadetBlue
-              '#DDA0DD', // Plum
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+              '#4BC0C0',
+              '#8A2BE2',
+              '#FF4500',
+              '#32CD32',
+              '#FFD700',
+              '#00FA9A',
+              '#DC143C',
+              '#00BFFF',
+              '#FF1493',
+              '#8B4513',
+              '#2E8B57',
+              '#FF6347',
+              '#4682B4',
+              '#D2691E',
+              '#A52A2A',
+              '#5F9EA0',
+              '#DDA0DD',
             ],
           },
         ],
@@ -184,7 +169,12 @@ const Dashboard: React.FC = () => {
 
       setCommitData(commitData)
       setLanguageData(languageData)
-      setTotalCommits(yearlyCommitCount)
+      setTotalCommits(commitCountLast12Months)
+
+      let totalStarsCount = 0
+      repos.forEach((repo: any) => {
+        totalStarsCount += repo.stargazers_count
+      })
       setTotalStars(totalStarsCount)
     } catch (error) {
       if (error instanceof Error) {
@@ -195,18 +185,15 @@ const Dashboard: React.FC = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     if (username) {
-      fetchData(year, username)
-      const interval = setInterval(
-        () => fetchData(year, username),
-        15 * 60 * 1000,
-      ) // Auto-refresh every 15 minutes
+      fetchData(username)
+      const interval = setInterval(() => fetchData(username), 15 * 60 * 1000) // Auto-refresh every 15 minutes
       return () => clearInterval(interval)
     }
-  }, [username, year])
+  }, [username, fetchData])
 
   return (
     <div className="p-4">

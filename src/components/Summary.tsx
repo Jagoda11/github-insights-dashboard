@@ -100,7 +100,7 @@ const Summary: React.FC<SummaryProps> = ({
                   d="M3 10h18M3 6h18M3 14h18M3 18h18"
                 ></path>
               </svg>
-              <p className="text-lg font-medium">Commits This Year</p>
+              <p className="text-lg font-medium">Commits (Git Happens)</p>
               <p className="text-3xl font-bold text-yellow-500">
                 {totalCommits}
               </p>
