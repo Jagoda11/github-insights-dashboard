@@ -2,7 +2,7 @@ name: 🧹 Remove Merged Branches
 
 on:
   schedule:
-    - cron: '0 0 * * 0' # Runs every Sunday
+    - cron: '0 0 1 * *' # Runs 1x a month
 
 jobs:
   cleanup:
@@ -12,7 +12,7 @@ jobs:
         run: echo "::add-mask::${{ secrets.GITHUB_TOKEN }}"
 
       - name: 🚀 Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 🧹 Remove Merged Branches
         env:
