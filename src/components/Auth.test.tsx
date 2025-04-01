@@ -9,12 +9,27 @@ describe('Auth Component 🎉', () => {
   beforeEach(() => {
     originalLocation = window.location
     delete (window as any).location
-    window.location = { ...originalLocation, reload: jest.fn() } as Location
+
+    Object.defineProperty(window, 'location', {
+      value: {
+        ...originalLocation,
+        reload: jest.fn(),
+        assign: jest.fn(),
+        replace: jest.fn(),
+        toString: () => originalLocation.toString(),
+        hostname: 'localhost', // for image path logic
+      },
+      writable: true,
+    })
+
     localStorage.clear()
   })
 
   afterEach(() => {
-    window.location = originalLocation // Restore the original location
+    Object.defineProperty(window, 'location', {
+      value: originalLocation,
+      writable: true,
+    })
   })
 
   it('✅ should be defined ✨', () => {
@@ -23,6 +38,7 @@ describe('Auth Component 🎉', () => {
 
   it('🎨 renders the authentication form 📝', () => {
     render(<Auth />)
+
     expect(screen.getByText('GitHub Authentication')).toBeInTheDocument()
     expect(
       screen.getByText(
@@ -37,6 +53,7 @@ describe('Auth Component 🎉', () => {
 
   it('🎯 updates input fields on user input 🖊️', () => {
     render(<Auth />)
+
     const usernameInput = screen.getByLabelText('GitHub Username:')
     const tokenInput = screen.getByLabelText('GitHub Personal Access Token:')
 
@@ -65,6 +82,7 @@ describe('Auth Component 🎉', () => {
 
   it('🔗 contains a link to generate a GitHub token 🔑', () => {
     render(<Auth />)
+
     const link = screen.getByRole('link', {
       name: 'Click here to generate a New GitHub Personal Access Token',
     })
