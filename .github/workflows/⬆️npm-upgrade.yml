@@ -25,9 +25,7 @@ jobs:
         run: npm install -g npm-check-updates
 
       - name: ⬆️ Update all npm packages
-        run: |
-          ncu -x
-          npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: 📦 Update dependencies with legacy peer deps
         run: npm update --legacy-peer-deps
