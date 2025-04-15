@@ -34,6 +34,7 @@ GitHub Pages offers a **free** way to deploy static applications. Integration wi
 ## Authentication with GitHub Personal Access Token (PAT)
 
 This application requires authentication using a GitHub Personal Access Token (PAT).
+For more details on how to set this up, check out this [article](https://medium.com/code-like-a-girl/the-quickest-way-to-authenticate-github-api-without-a-backend-4b230e85b652/).
 
 ## Features
 
