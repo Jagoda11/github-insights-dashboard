@@ -24,6 +24,9 @@ jobs:
       - name: 📦 Install npm-check-updates
         run: npm install -g npm-check-updates
 
+      - name: 🔄 Update dependency versions
+        run: ncu -u
+
       - name: ⬆️ Update all npm packages
         run: npm install --legacy-peer-deps
 
@@ -36,8 +39,44 @@ jobs:
       - name: 🧪 Test with coverage
         run: npm run test
 
+      - name: Check Test Results
+        id: check_tests
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "::set-output name=tests_passed::true"
+          else
+            echo "::set-output name=tests_passed::false"
+          fi
+
+      - name: 🎭 Mask Debricked credentials
+        run: |
+          echo "::add-mask::${{ secrets.DEBRICKED_TOKEN }}"
+
+      - name: Install Debricked CLI
+        run: |
+          curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
+          sudo mv debricked /usr/local/bin/debricked
+
+      - name: 🛡️ Debricked Vulnerability Scan
+        run: |
+          debricked scan -t ${{ secrets.DEBRICKED_TOKEN }} -r ${{ github.repository }} -c ${{ github.sha }}
+
+      - name: Check Scan Results
+        id: check_scan
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "::set-output name=scan_passed::true"
+          else
+            echo "::set-output name=scan_passed::false"
+          fi
+
+      - name: Debug Outputs
+        run: |
+          echo "Tests Passed: ${{ steps.check_tests.outputs.tests_passed }}"
+          echo "Scan Passed: ${{ steps.check_scan.outputs.scan_passed }}"
+
       - name: 📝 Commit changes
-        if: success()
+        if: steps.check_tests.outputs.tests_passed == 'true' && steps.check_scan.outputs.scan_passed == 'true'
         run: |
           git config --local user.name "Debugging Duck 🦆"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -45,9 +84,5 @@ jobs:
           git diff-index --quiet HEAD || git commit -m "⬆️ update all npm dependencies ⬆️"
 
       - name: 🚀 Push changes
-        if: success()
+        if: steps.check_tests.outputs.tests_passed == 'true' && steps.check_scan.outputs.scan_passed == 'true'
         run: git push
-
-      - name: 🚨 Notify failure
-        if: failure()
-        run: echo "Build or tests failed. Please investigate."
