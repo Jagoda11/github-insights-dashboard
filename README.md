@@ -112,16 +112,13 @@ This repo includes several GitHub Actions workflows that automate various tasks:
 - `close-merged-pull-requests.yml`: Automatically closes pull requests that have been merged.
 - `close-stale-issues-and-prs.yml`: Closes stale issues and pull requests.
 - `label-new-pull-requests.yml`: Automatically adds labels to new pull requests.
-- `thank-contributors-on-issue-close.yml`: Thanks contributors when an issue they commented on is closed.
-- `welcome-new-pull-requests.yml`: Posts a welcome message on new pull requests.
-- `welcome.yml`: Posts a welcome message on new issues.
 - `npm-upgrade.yml`: checks for new versions of the dependencies and updates package.json and package-lock.json
 
 These workflows use the `secrets.GITHUB_TOKEN` secret, which GitHub automatically creates for every repository. You can create a personal access token and add it as a secret in your repository. For more information, see [Creating and storing encrypted secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
 ## 🌐 GitHub Codespaces Support
 
-This project includes a `.devcontainer.json` file which allows you to work on this project in a Docker container using [GitHub Codespaces](https://github.com/features/codespaces). This helps to maintain a consistent development environment, making it easier for you to collaborate with others without having to worry about individual setup.
+This project includes a `.devcontainer.json` file, which allows you to work on this project in a Docker container using [GitHub Codespaces](https://github.com/features/codespaces). This helps to maintain a consistent development environment, making it easier for you to collaborate with others without having to worry about individual setups.
 
 GitHub Codespaces configures your development environment based on your project's needs using this file. When you create a new codespace for this project, the Codespaces environment is automatically configured as per the settings defined in `.devcontainer.json`.
 
@@ -136,11 +133,11 @@ Your development environment is now set up and running in a Docker container in 
 ## 🤝 Contributing
 
 Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md).
-for details on our code of conduct and the process for submitting pull requests.
+For details on our code of conduct and the process for submitting pull requests.
 
 ## 📜 Code of Conduct
 
-Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community approachable and respectful.
 
 ## 📝 License
 
