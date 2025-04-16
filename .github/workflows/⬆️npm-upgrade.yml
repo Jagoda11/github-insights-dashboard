@@ -25,7 +25,10 @@ jobs:
         run: npm install -g npm-check-updates
 
       - name: 🔄 Update dependency versions
-        run: ncu -u
+        run: |
+          ncu -u
+          echo "📦 Updated Packages:"
+          git diff package.json | grep "^[+-]" | grep -v "\"@" | grep -v "^[+-][+-]"
 
       - name: ⬆️ Update all npm packages
         run: npm install --legacy-peer-deps
@@ -39,7 +42,7 @@ jobs:
       - name: 🧪 Test with coverage
         run: npm run test
 
-      - name: Check Test Results
+      - name: ☑️ Check Test Results
         id: check_tests
         run: |
           if [ $? -eq 0 ]; then
@@ -47,6 +50,9 @@ jobs:
           else
             echo "::set-output name=tests_passed::false"
           fi
+
+      - name: 🧐 Ensure package-lock.json exists
+        run: npm i --package-lock-only
 
       - name: 🎭 Mask Debricked credentials
         run: |
