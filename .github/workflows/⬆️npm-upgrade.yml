@@ -46,11 +46,10 @@ jobs:
         id: check_tests
         run: |
           if [ $? -eq 0 ]; then
-            echo "::set-output name=tests_passed::true"
+            echo "tests_passed=true" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=tests_passed::false"
+            echo "tests_passed=false" >> $GITHUB_OUTPUT
           fi
-
       - name: 🧐 Ensure package-lock.json exists
         run: npm i --package-lock-only
 
