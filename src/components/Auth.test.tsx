@@ -2,6 +2,7 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Auth from './Auth'
+if (!Auth) throw new Error('Auth component import failed')
 
 describe('Auth Component 🎉', () => {
   let originalLocation: Location
