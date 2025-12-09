@@ -8,6 +8,8 @@
 ![React](https://img.shields.io/github/package-json/dependency-version/Jagoda11/github-insights-dashboard/react?label=React)
 ![TypeScript](https://img.shields.io/github/package-json/dependency-version/Jagoda11/github-insights-dashboard/dev/typescript?label=TypeScript)
 ![Build Status](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/⬆️npm-upgrade.yml/badge.svg?branch=main)
+[![Update from main](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/update-from-main.yml/badge.svg)](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/update-from-main.yml)
+
 
 ## 📝 Summary
 
