@@ -1,15 +1,15 @@
 name: 🔄 Update from main
 
 on:
-  workflow_dispatch: 🖱️
+  workflow_dispatch:
 
 permissions:
-  contents: write ✍️
+  contents: write
 
 jobs:
   update:
-    name: 🚀 Merge main into target branch
-    runs-on: ubuntu-latest 🐧
+    name: ♻️ Merge main into target branch
+    runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout target branch
