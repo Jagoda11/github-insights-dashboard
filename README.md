@@ -10,7 +10,6 @@
 ![Build Status](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/⬆️npm-upgrade.yml/badge.svg?branch=main)
 [![Update from main](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/update-from-main.yml/badge.svg)](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/update-from-main.yml)
 
-
 ## 📝 Summary
 
 An interactive dashboard to visualize GitHub user activity, including commits, programming languages, and repository statistics.
