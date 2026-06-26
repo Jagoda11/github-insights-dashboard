@@ -51,7 +51,7 @@ jobs:
             echo "tests_passed=false" >> $GITHUB_OUTPUT
           fi
       - name: 🧐 Ensure package-lock.json exists
-        run: npm i --package-lock-only
+        run: npm i --package-lock-only --legacy-peer-deps
 
       - name: 🎭 Mask Debricked credentials
         run: |
