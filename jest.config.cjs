@@ -1,5 +1,4 @@
 module.exports = {
-  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
   testMatch: ['**/*.test.tsx'],
@@ -11,4 +10,14 @@ module.exports = {
     '/cypress-tests/',
     '/dist/',
   ],
+  transform: {
+    '^.+\\.[jt]sx?$': [
+      'ts-jest',
+      {
+        tsconfig: {
+          types: ['node', 'jest'],
+        },
+      },
+    ],
+  },
 }
