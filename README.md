@@ -10,6 +10,7 @@
 ![Build Status](https://github.com/Jagoda11/github-insights-dashboard/actions/workflows/⬆️npm-upgrade.yml/badge.svg?branch=main)
 
 ## 📝 Summary
+
 An interactive dashboard to visualize GitHub user activity, including commits, programming languages, and repository statistics.
 
 - React ⚛️: For building user interfaces.
